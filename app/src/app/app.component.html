@@ -1,5 +1,11 @@
-<div *ngIf="resource$|async as resource">
-  {{ resource.message }}
-</div>
-
-{{ request.value() }}
+@switch (request.status()) {
+  @case (ResourceStatus.Loading) {
+    <p>Loading...</p>
+  }
+  @case (ResourceStatus.Error) {
+    <p>Error!! :(</p>
+  }
+  @case (ResourceStatus.Resolved) {
+    <p>{{ request.value()?.message }}</p>
+  }
+}

@@ -1,21 +1,17 @@
-import {Component, inject} from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {tap} from "rxjs";
+import {Component, inject, ResourceStatus} from '@angular/core';
+import {HttpClient, httpResource} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [HttpClient]
+  providers: [HttpClient],
+  standalone: false
 })
 export class AppComponent {
   title = 'app';
   http = inject(HttpClient);
 
-  request = httpResource(() => 'http://localhost:3030');
-
-  public resource$ = this.http.get('http://localhost:3030')
-    .pipe(tap(
-      console.log
-    ));
+  request = httpResource<{ message: string }>(() => 'http://localhost:3030');
+  protected readonly ResourceStatus = ResourceStatus;
 }
