@@ -9,3 +9,6 @@
     <p>{{ request.value()?.message }}</p>
   }
 }
+
+
+<p-button label="Click Me" [disabled]="request.status() === ResourceStatus.Loading" severity="primary" />
