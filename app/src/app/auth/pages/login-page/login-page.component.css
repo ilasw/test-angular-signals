@@ -1,0 +1,91 @@
+/* Form container styling */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Heading styles */
+.login-heading {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Form field spacing */
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+/* Label styling */
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Help text styling */
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-secondary-color);
+  font-size: 0.875rem;
+}
+
+/* Form actions container */
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Full width utility */
+.w-full {
+  width: 100%;
+}
+
+/* Focus state improvements */
+:host ::ng-deep input:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast focus for accessibility */
+:host ::ng-deep .p-button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Error state styling */
+:host ::ng-deep .p-message {
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  form {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+}
+
+/* Skip link for keyboard users (hidden visually but accessible to screen readers) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}

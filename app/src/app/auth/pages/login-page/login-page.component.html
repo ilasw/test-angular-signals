@@ -1,0 +1,76 @@
+<a href="#login-heading" class="skip-link">Skip to login form</a>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate aria-labelledby="login-heading">
+  <p-fieldset>
+    <h2 id="login-heading" class="login-heading">Login</h2>
+
+    <div class="form-field"
+         *ngIf="loginForm.controls.email as emailControl"
+    >
+      <label for="email" class="form-label">Email</label>
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-envelope"></i>
+        <input
+          id="email"
+          pInputText
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          aria-describedby="email-help email-error"
+          class="w-full"
+          autocomplete="email"
+        />
+      </span>
+      <small id="email-help" class="form-text">Enter the email address associated with your account</small>
+      <p-message
+        *ngIf="(emailControl.touched) && emailControl.errors"
+        id="email-error"
+        severity="error"
+        [text]="emailControl.errors?.['required'] ? 'Email is required' :
+               emailControl.errors?.['email'] ? 'Please enter a valid email address' : ''"
+        aria-live="assertive">
+      </p-message>
+    </div>
+
+    <div class="form-field"
+         *ngIf="loginForm.controls.password as passwordControl"
+    >
+      <label for="password" class="form-label">Password</label>
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-lock"></i>
+        <input
+          id="password"
+          pInputText
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          aria-describedby="password-help password-error"
+          class="w-full"
+          autocomplete="current-password"
+        />
+      </span>
+      <small id="password-help" class="form-text">Password must be at least 8 characters</small>
+      <p-message
+        *ngIf="(passwordControl.touched) && passwordControl.errors"
+        id="password-error"
+        severity="error"
+        aria-live="assertive">
+        <span *ngIf="'required' in passwordControl.errors?">
+          Password is required
+        </span>
+        <span *ngIf="'minlength' in passwordControl.errors">
+          Password must be at least 8 characters long
+        </span>
+      </p-message>
+    </div>
+
+    <div class="form-actions">
+      <p-button
+        type="submit"
+        label="Login"
+        icon="pi pi-sign-in"
+        [disabled]="loginForm.invalid"
+        aria-label="Login to your account">
+      </p-button>
+    </div>
+  </p-fieldset>
+</form>

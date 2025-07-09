@@ -1,14 +1,14 @@
-@switch (request.status()) {
-  @case (ResourceStatus.Loading) {
-    <p>Loading...</p>
-  }
-  @case (ResourceStatus.Error) {
-    <p>Error!! :(</p>
-  }
-  @case (ResourceStatus.Resolved) {
-    <p>{{ request.value()?.message }}</p>
-  }
-}
+<!--@switch (request.status()) {-->
+<!--  @case (ResourceStatus.Loading) {-->
+<!--    <p>Loading...</p>-->
+<!--  }-->
+<!--  @case (ResourceStatus.Error) {-->
+<!--    <p>Error!! :(</p>-->
+<!--  }-->
+<!--  @case (ResourceStatus.Resolved) {-->
+<!--    <p>{{ request.value()?.message }}</p>-->
+<!--  }-->
+<!--}-->
 
 
-<p-button label="Click Me" [disabled]="request.status() === ResourceStatus.Loading" severity="primary" />
+<app-login-page/>
