@@ -5,6 +5,7 @@ import {Fieldset} from "primeng/fieldset";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Button} from "primeng/button";
 import {MessageModule} from "primeng/message";
+import {FormGroupComponent} from "../../../shared/components/form-group/form-group.component";
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +15,8 @@ import {MessageModule} from "primeng/message";
     Fieldset,
     ReactiveFormsModule,
     Button,
-    MessageModule
+    MessageModule,
+    FormGroupComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'

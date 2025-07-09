@@ -13,6 +13,5 @@ export class AppComponent {
   title = 'app';
   http = inject(HttpClient);
 
-  request = httpResource<{ message: string }>(() => 'http://localhost:3030');
-  protected readonly ResourceStatus = ResourceStatus;
+  // request = httpResource<{ message: string }>(() => 'http://localhost:3030');
 }
