@@ -1,0 +1,30 @@
+<div class="py-4 flex flex-col gap-1">
+  <label class="flex flex-col gap-1">
+    <span class="font-bold">{{ label }}</span>
+    @if (helper) {
+      <small class="text-sm">{{ helper }}</small>
+    }
+
+    <span class="flex gap-2 items-center">
+    <ng-content/>
+  </span>
+  </label>
+
+  @if (control?.errors && control?.touched) {
+    <p-message
+      severity="error"
+      aria-live="assertive">
+      @if ('required' in control?.errors!) {
+        {{ label }} is required
+      } @else if ('email' in control?.errors!) {
+        Please enter a valid email address
+      } @else if ('minlength' in control?.errors!) {
+        {{ label }} must be at least {{ control?.errors?.['minlength']?.requiredLength }} characters long
+      } @else if ('maxlength' in control?.errors!) {
+        {{ label }} cannot exceed {{ control?.errors?.['maxlength']?.requiredLength }} characters
+      } @else {
+        {{ label }} is invalid
+      }
+    </p-message>
+  }
+</div>
