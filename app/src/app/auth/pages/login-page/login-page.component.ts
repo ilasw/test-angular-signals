@@ -5,9 +5,8 @@ import {Fieldset} from "primeng/fieldset";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Button} from "primeng/button";
 import {MessageModule} from "primeng/message";
-import {FormGroupComponent} from "../../../shared/components/form-group/form-group.component";
-import {FormStatus} from "../../../shared/types/form";
-import {HttpClient} from "@angular/common/http";
+import {FormGroupComponent} from "@/shared/components/form-group/form-group.component";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login-page',
@@ -25,9 +24,10 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginPageComponent {
 
-  http = inject(HttpClient);
+  authService = inject(AuthService);
+  isLoading$ = this.authService.isLoading();
+  error$ = this.authService.getError();
 
-  formStatus = FormStatus.Initial;
   formBuilder = new FormBuilder();
   loginForm = this.formBuilder.group({
     email: ['admin@example.com', [Validators.required, Validators.email]],
@@ -38,22 +38,13 @@ export class LoginPageComponent {
     if (this.loginForm.invalid) {
       return;
     }
-    this.formStatus = FormStatus.Loading;
-    const formValue = this.loginForm.value;
-    console.log('credentials:', formValue);
 
-    this.http.post('http://localhost:3030/auth/login', formValue).subscribe({
-      next: (response) => {
-        console.log('Login successful:', response);
-        this.formStatus = FormStatus.Success;
-        // Handle successful login, e.g., redirect to dashboard
-      },
-      error: (error) => {
-        console.error('Login failed:', error);
-        this.formStatus = FormStatus.Error;
-      }
-    })
+    const {email, password} = this.loginForm.value;
+
+    if (!email || !password) {
+      return alert('Please fill in all fields');
+    }
+
+    this.authService.login({email, password});
   }
-
-  protected readonly FormStatus = FormStatus;
 }

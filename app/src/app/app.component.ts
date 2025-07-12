@@ -1,6 +1,7 @@
-import {Component, inject, ResourceStatus} from '@angular/core';
-import {HttpClient, httpResource} from "@angular/common/http";
+import {Component, inject, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {ButtonModule} from "primeng/button";
+import {AuthService} from "./auth/services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,13 @@ import {ButtonModule} from "primeng/button";
   providers: [HttpClient],
   standalone: false,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
   http = inject(HttpClient);
+  private authService = inject(AuthService);
 
-  // request = httpResource<{ message: string }>(() => 'http://localhost:3030');
+  ngOnInit() {
+    // Load user from localStorage on app initialization
+    this.authService.loadUser();
+  }
 }
