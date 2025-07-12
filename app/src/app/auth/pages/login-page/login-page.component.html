@@ -43,7 +43,7 @@
           label="Login"
           icon="pi pi-sign-in"
           iconPos="right"
-          [disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid || formStatus === FormStatus.Loading"
           aria-label="Login to your account"
         >
         </p-button>

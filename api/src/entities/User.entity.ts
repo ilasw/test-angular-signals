@@ -4,9 +4,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { ProjectAssignment } from './ProjectAssignment.entity';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -42,10 +40,4 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(() => ProjectAssignment, (assignment) => assignment.user)
-  projectAssignments: ProjectAssignment[];
-
-  @OneToMany(() => ProjectAssignment, (assignment) => assignment.assignedBy)
-  assignedProjects: ProjectAssignment[];
 }
