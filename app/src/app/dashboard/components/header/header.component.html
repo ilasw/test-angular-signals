@@ -1,0 +1,23 @@
+@let user = (user$ | async);
+
+<header class="container py-4">
+  <div class="flex items-center justify-between gap-4">
+    <div>
+      @if (user) {
+        Hello <strong>{{ user?.firstName }} {{ user?.lastName }}</strong>
+      }
+    </div>
+    <div>
+      @if (user) {
+        <p-button ariaLabel="logout"
+                  icon="pi pi-sign-out"
+                  iconPos="right"
+                  pTooltip="logout"
+                  severity="secondary"
+                  size="small"
+                  (onClick)="logout()"
+        />
+      }
+    </div>
+  </div>
+</header>

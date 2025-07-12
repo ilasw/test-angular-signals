@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   private authService = inject(AuthService);
 
   ngOnInit() {
-    // Load user from localStorage on app initialization
     this.authService.loadUser();
   }
 }
