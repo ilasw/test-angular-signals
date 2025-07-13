@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.prod.com'
+  apiUrl: 'https://test-nestjs-wf07.onrender.com'
 };
