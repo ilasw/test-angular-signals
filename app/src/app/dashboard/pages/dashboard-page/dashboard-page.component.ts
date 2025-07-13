@@ -1,11 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {HeaderComponent} from "@/dashboard/components/header/header.component";
 import {DashboardService} from "@/dashboard/services/dashboard.service";
 import {AsyncPipe} from "@angular/common";
 import {Button} from "primeng/button";
 import {UserEditModalComponent} from "@/dashboard/components/user-edit-modal/user-edit-modal.component";
 import {AuthService} from "@/auth/services/auth.service";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {User, UserRole} from "@/shared/models/user.model";
 import {BehaviorSubject} from "rxjs";
 import {DataView} from "primeng/dataview";
@@ -22,7 +22,8 @@ import {Tooltip} from "primeng/tooltip";
     Tooltip
   ],
   templateUrl: './dashboard-page.component.html',
-  styleUrl: './dashboard-page.component.css'
+  styleUrl: './dashboard-page.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardPageComponent {
 
@@ -38,8 +39,4 @@ export class DashboardPageComponent {
   userRequestRef = this.dashboardService.getAllUsersRef();
 
   currentEditingUser$ = new BehaviorSubject<User | null>(null);
-
-  log$ = this.currentEditingUser$.pipe(
-    tap(console.log)
-  )
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {AppState} from '@/store';
@@ -10,8 +10,7 @@ import {User} from '@/shared/models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private store: Store<AppState>) {
-  }
+  private store = inject(Store<AppState>);
 
   // Dispatch login action
   login({email, password}: Record<'email' | 'password', string>): void {

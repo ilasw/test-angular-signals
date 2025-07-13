@@ -55,7 +55,6 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
-        tap(() => console.log('login success')),
         tap(() => this.router.navigate(['/dashboard']))
       ),
     {dispatch: false}

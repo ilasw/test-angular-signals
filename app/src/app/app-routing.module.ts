@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPageComponent,
+    loadComponent: () => import('./dashboard/pages/dashboard-page/dashboard-page.component')
+      .then(m => m.DashboardPageComponent),
     canActivate: [onlyLoggedUsersGuard]
   },
   {

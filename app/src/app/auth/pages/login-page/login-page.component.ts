@@ -30,8 +30,8 @@ export class LoginPageComponent {
 
   formBuilder = new FormBuilder();
   loginForm = this.formBuilder.group({
-    email: ['admin@example.com', [Validators.required, Validators.email]],
-    password: ['admin123', [Validators.required, Validators.minLength(8)]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
   onSubmit() {

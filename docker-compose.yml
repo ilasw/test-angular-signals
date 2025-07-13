@@ -30,6 +30,7 @@ services:
       DATABASE_PASSWORD: postgres
       DATABASE_NAME: week_project
       JWT_SECRET: WEE_WOO_MON_AMI
+      FRONTEND_URL: http://localhost:4200
     ports:
       - "3030:3030"
     depends_on:
