@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ButtonModule} from "primeng/button";
 import {AuthService} from "./auth/services/auth.service";
 
 @Component({

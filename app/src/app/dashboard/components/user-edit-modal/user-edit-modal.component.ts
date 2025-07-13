@@ -3,7 +3,7 @@ import {User, UserRole} from "@/shared/models/user.model";
 import {Dialog} from "primeng/dialog";
 import {Button} from "primeng/button";
 import {Select} from "primeng/select";
-import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormGroupComponent} from "@/shared/components/form-group/form-group.component";
 import {DashboardService} from "@/dashboard/services/dashboard.service";
 import {finalize} from "rxjs";

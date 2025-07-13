@@ -27,7 +27,6 @@ export const onlyGuestUsersGuard: CanActivateFn = () => {
 
 export const generateUserGuardByRole = (role: UserRole): CanActivateFn => {
   const store = inject(Store<AppState>);
-  const router = inject(Router);
   return () => store.select(selectUser).pipe(
     take(1),
     map(user => !!user && user.role === role),

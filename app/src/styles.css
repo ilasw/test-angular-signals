@@ -1,6 +1,7 @@
 @import "tailwindcss";
-@plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
+
+@plugin "tailwindcss-primeui";
 
 @utility container {
   @apply mx-auto max-w-screen-md px-4;

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {AppState} from '../../store';
+import {AppState} from '@/store';
 import * as AuthActions from '../store/auth.actions';
 import * as AuthSelectors from '../store/auth.selectors';
-import {User} from '../../shared/models/user.model';
+import {User} from '@/shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'

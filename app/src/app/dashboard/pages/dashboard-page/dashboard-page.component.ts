@@ -5,7 +5,7 @@ import {AsyncPipe} from "@angular/common";
 import {Button} from "primeng/button";
 import {UserEditModalComponent} from "@/dashboard/components/user-edit-modal/user-edit-modal.component";
 import {AuthService} from "@/auth/services/auth.service";
-import {filter, map, tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {User, UserRole} from "@/shared/models/user.model";
 import {BehaviorSubject} from "rxjs";
 import {DataView} from "primeng/dataview";
