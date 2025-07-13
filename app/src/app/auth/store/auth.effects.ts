@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import * as AuthActions from './auth.actions';
 import {User} from "@/shared/models/user.model";
+import {apiUrl} from "@/shared/constants";
 
 interface LoginResponse {
   access_token: string;
@@ -28,7 +29,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.login),
       switchMap(({email, password}) =>
-        this.http.post<LoginResponse>('http://localhost:3030/auth/login', {email, password}).pipe(
+        this.http.post<LoginResponse>(`${apiUrl}/auth/login`, {email, password}).pipe(
           map((response) => {
             // Store token in localStorage for persistence
             localStorage.setItem(TOKEN_LOCAL_KEY, response.access_token);

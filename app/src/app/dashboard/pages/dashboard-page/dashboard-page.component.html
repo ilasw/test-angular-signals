@@ -1,4 +1,66 @@
-<app-header />
+<app-header/>
 <div class="container">
-  hello
+  <h2 class="text-2xl font-bold">Users</h2>
+  @if (userRequestRef.isLoading()) {
+    <div>Loading...</div>
+  } @else if (userRequestRef.error()) {
+    <div>Error loading users: {{ userRequestRef.error() }}</div>
+  } @else if (userRequestRef.hasValue()) {
+
+    @let profiles = userRequestRef.value();
+    @let canEdit = canUserEdit$ | async;
+    @let userId = userId$ | async;
+
+    @if (!!profiles?.length) {
+      <div class="user-list">
+        <p>Total Users: {{ profiles.length }}</p>
+      </div>
+      <p-dataView class="my-10" [value]="profiles" [paginator]="profiles.length > 10" [rows]="10">
+        <ng-template #list let-items>
+          <div class="font-bold flex items-center justify-between gap-2 mt-10">
+            <span class="min-w-20">Role</span>
+            <span class="flex-1">Name</span>
+            @if (canEdit){
+              <span>Actions</span>
+            }
+          </div>
+          <ul>
+            @for (profile of items; track profile.id) {
+              <li class="py-2 not-last:border-b border-b-gray-200 flex items-center justify-between gap-2">
+                <span class="min-w-20">[{{ profile.role }}]</span>
+                <div class="flex gap-2 items-center flex-1">
+                  <span class="font-bold">{{ profile.firstName }} {{ profile.lastName }}</span>
+                  <span class="text-sm text-gray-500">({{ profile.email }})</span>
+                </div>
+                <div>
+                  @if (canEdit) {
+                    @let isSameUser = profile.id === userId;
+
+                    <p-button
+                      size="small"
+                      severity="secondary"
+                      icon="pi pi-pencil"
+                      [pTooltip]="isSameUser ? 'You cannot edit your own role' : 'Edit role'"
+                      [disabled]="isSameUser"
+                      (onClick)="currentEditingUser$.next(profile)"/>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        </ng-template>
+      </p-dataView>
+    } @else {
+      <div>No users found.</div>
+    }
+  }
 </div>
+
+@let a = log$ | async;
+
+<app-user-edit-modal [user]="currentEditingUser$ | async"
+                     [isVisible]="!!(currentEditingUser$ | async)"
+                     (onClose)="currentEditingUser$.next(null)"
+                     (onUserUpdated)="userRequestRef.reload()"
+/>
+

@@ -12,7 +12,10 @@ export class DatabaseSeederService implements OnModuleInit {
   }
 
   private async seedAdminUser() {
-    const existingAdmin = await this.usersService.findOne('admin@example.com');
+    const existingAdmin = await this.usersService.findBy(
+      'email',
+      'admin@example.com',
+    );
 
     if (existingAdmin) {
       console.log('Admin user already exists, skipping seed');
@@ -25,8 +28,24 @@ export class DatabaseSeederService implements OnModuleInit {
       password: hashedPassword,
       firstName: 'Admin',
       lastName: 'User',
-      role: UserRole.ADMIN,
+      role: UserRole.Admin,
     });
     console.log('Admin user seeded successfully');
+
+    // add 2 more standard users
+    await this.usersService.create({
+      email: 'user1@example.com',
+      password: hashedPassword,
+      firstName: 'User',
+      lastName: 'First',
+      role: UserRole.User,
+    });
+    await this.usersService.create({
+      email: 'user2@example.com',
+      password: hashedPassword,
+      firstName: 'User',
+      lastName: 'Second',
+      role: UserRole.User,
+    });
   }
 }

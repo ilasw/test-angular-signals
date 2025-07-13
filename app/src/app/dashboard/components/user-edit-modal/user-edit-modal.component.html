@@ -1,0 +1,39 @@
+<p-dialog
+  header="Edit User"
+  styleClass="w-full md:w-96 p-4"
+  [(visible)]="isVisible"
+  [dismissableMask]="true"
+  [modal]="true"
+  (onHide)="onClose.emit()"
+>
+  @if (!!user) {
+    <form (ngSubmit)="onSubmit()" #content>
+      <div class="text-sm">
+        You are currently editing <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+      </div>
+
+      <app-form-group label="Role" name="role" [control]="userForm.controls.role">
+        <p-select
+          size="small"
+          [formControl]="userForm.controls.role"
+          [options]="roles"
+          placeholder="Select a role"
+          [showClear]="false"
+          class="w-full"
+        ></p-select>
+      </app-form-group>
+
+      @if (errorMessage) {
+        <p-message severity="error">
+          {{ errorMessage }}
+        </p-message>
+      }
+
+      <div class="flex justify-end gap-2 mt-5">
+        <p-button type="button" label="Cancel" severity="secondary" size="small" (click)="onClose.emit()"/>
+        <p-button type="submit" label="Save" size="small" (click)="onSubmit()"/>
+      </div>
+    </form>
+
+  }
+</p-dialog>
