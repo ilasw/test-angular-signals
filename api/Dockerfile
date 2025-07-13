@@ -16,8 +16,11 @@ COPY . .
 # Build the NestJS application
 RUN npm run build
 
+# Make the start script executable
+RUN chmod +x ./start.sh
+
 # Expose the application port
 EXPOSE 3030
 
-# Command to run the application
-CMD ["node", "dist/main"]
+# Command to run the start script
+CMD ["./start.sh"]
